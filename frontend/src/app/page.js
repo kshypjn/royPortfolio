@@ -51,7 +51,7 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-0 sm:p-6 md:p-12 bg-white">
-      <section className="w-full max-w-7xl">
+      <section className="w-full max-w-7xl mx-auto">
         {/* No heading, just the articles grid */}
         {articles.length === 0 ? (
           <p className="text-center text-lg">No articles found. Please add some articles in Strapi!</p>
@@ -66,39 +66,50 @@ export default async function Home() {
                 : '/no-image.jpg';
 
               return (
-                <article key={id} className="border-b border-gray-200 pb-8 mb-8 bg-white">
-                  {image && (
-                    <div className="relative w-full h-48 mb-4">
+                <Link
+                  key={id}
+                  href={URL || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block focus:outline-none"
+                  tabIndex={0}
+                >
+                  <div className="w-full">
+                    <div className="relative w-full aspect-[4/3] mb-4">
                       <Image
                         src={imageUrl}
                         alt={Title || 'Article Image'}
                         fill
                         style={{ objectFit: 'cover' }}
-                        className="rounded-md"
+                        className="rounded-xl transition-transform duration-200 group-hover:scale-[1.02] group-focus:scale-[1.02]"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        loading="lazy"
+                        priority={false}
                       />
                     </div>
-                  )}
-                  <div className="mb-2 text-xs italic text-gray-500">
-                    {PublicationDate && (
-                      <>On {new Date(PublicationDate).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</>
-                    )}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2 leading-tight">{Title}</h3>
-                  {tags && tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-2">
-                      {tags.map(tag => (
-                        <span key={tag.id} className="bg-black text-white text-xs font-medium px-2.5 py-0.5 rounded">
-                          {tag.name}
-                        </span>
-                      ))}
+                    <div className="mb-1 text-sm font-serif italic text-[#8a7c54]">
+                      {PublicationDate && (
+                        <>On {new Date(PublicationDate).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</>
+                      )}
                     </div>
-                  )}
-                  {URL && (
-                    <Link href={URL} target="_blank" rel="noopener noreferrer" className="text-black underline text-sm">
-                      Read Full Article &rarr;
-                    </Link>
-                  )}
-                </article>
+                    <h3 className="text-lg md:text-xl font-serif font-normal mb-3 leading-tight text-black transition-colors group-hover:text-[#8a7c54] group-focus:text-[#8a7c54]">
+                      {Title}
+                    </h3>
+                    <hr className="border-t border-gray-200 mb-2" />
+                    {tags && tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-1">
+                        {tags.map(tag => (
+                          <span key={tag.id} className="rounded-full bg-black/90 text-white text-[10px] font-sans uppercase px-3 py-1 tracking-widest">
+                            {tag.name}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <span className="inline-block align-middle ml-1 text-black/60 group-hover:text-black group-focus:text-black transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 5h6m0 0v6m0-6L10 16l-4 4-2-2 4-4L21 5Z"/></svg>
+                    </span>
+                  </div>
+                </Link>
               );
             })}
           </div>
