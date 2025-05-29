@@ -84,3 +84,8 @@ body {
 .sidebar-underline:focus::after {
   width: 100%;
 }
+
+.sidebar-underline-active::after {
+  width: 100%;
+  background: gold;
+}

@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from 'next/link';
 import Header from './components/Header';
-import HamburgerMenu from './components/HamburgerMenu';
+import Sidebar from './components/Sidebar';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,25 +22,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black min-h-screen`}> 
-        {/* Left sidebar containing hamburger menu, division line, and 'A' logo */}
-        <div className="fixed left-0 top-0 h-full z-50 flex flex-col items-center hidden sm:flex" style={{width: '72px'}}>
-          {/* Hamburger menu at top */}
-          <div className="pt-8">
-            <HamburgerMenu />
-          </div>
-          
-          {/* Vertical division line */}
-          <div className="absolute right-0 top-0 h-full w-px bg-gray-400 transition-transform hover:translate-x-1 hidden sm:block" style={{opacity: 0.5}} />
-          
-          {/* 'A' Logo positioned at bottom */}
-          <div className="flex-1 flex flex-col justify-end items-center hidden  sm:flex ">
-            <Link href="/" className="mb-12 pointer-events-auto transform rotate-270 hover:cursor-pointer hover:animate-cute-bounce " aria-label="Home">
-              <span className="text-xl md:text-2xl lg:text-3xl font-serif text-black" style={{lineHeight: 1}}>A</span>
-            </Link>
-          </div>
-        </div>
-
+      <body className="antialiased bg-white text-black min-h-screen">
+        <Sidebar />
         <Header />
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {children}

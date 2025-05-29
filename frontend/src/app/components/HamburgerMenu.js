@@ -1,9 +1,16 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function HamburgerMenu() {
   const [open, setOpen] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   useEffect(() => {
     if (open) {
@@ -25,6 +32,8 @@ export default function HamburgerMenu() {
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, []);
+
+  if (!hydrated) return null;
 
   return (
     <>
@@ -57,14 +66,14 @@ export default function HamburgerMenu() {
         <nav className="flex flex-1 flex-col items-start px-8 pt-24 gap-8">
           <Link 
             href="/" 
-            className="text-2xl font-bold tracking-widest text-black sidebar-underline" 
+            className={`text-2xl font-bold tracking-widest text-black sidebar-underline${pathname === '/' ? ' sidebar-underline-active' : ''}`}
             onClick={() => setOpen(false)}
           >
             HOME
           </Link>
           <Link 
             href="/about" 
-            className="text-2xl font-bold tracking-widest text-black sidebar-underline" 
+            className={`text-2xl font-bold tracking-widest text-black sidebar-underline${pathname === '/about' ? ' sidebar-underline-active' : ''}`}
             onClick={() => setOpen(false)}
           >
             ABOUT ME

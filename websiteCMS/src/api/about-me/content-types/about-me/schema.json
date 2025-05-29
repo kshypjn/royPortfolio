@@ -4,7 +4,8 @@
   "info": {
     "singularName": "about-me",
     "pluralName": "about-mes",
-    "displayName": "About Me"
+    "displayName": "About Me",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,6 +13,31 @@
   "attributes": {
     "content": {
       "type": "blocks"
+    },
+    "profilePicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "CTAtext": {
+      "type": "text"
+    },
+    "CTAlink": {
+      "type": "string"
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.experience-section"
+    },
+    "Introduction": {
+      "type": "string"
     }
   }
 }

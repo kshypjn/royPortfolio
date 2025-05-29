@@ -376,6 +376,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiAboutMeAboutMe extends Struct.SingleTypeSchema {
   collectionName: 'about_mes';
   info: {
+    description: '';
     displayName: 'About Me';
     pluralName: 'about-mes';
     singularName: 'about-me';
@@ -388,13 +389,20 @@ export interface ApiAboutMeAboutMe extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    CTAlink: Schema.Attribute.String;
+    CTAtext: Schema.Attribute.Text;
+    Introduction: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::about-me.about-me'
     > &
       Schema.Attribute.Private;
+    profilePicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    sections: Schema.Attribute.Component<'shared.experience-section', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
