@@ -1,48 +1,40 @@
-import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+// Remove "use client" and all hooks, this is a server component
+import { BlocksRenderer } from '@strapi/blocks-react-renderer'; // If you use Strapi blocks
 
+// Fetch About Me data from Strapi
 async function getAboutMeData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/about-me`, {
     next: { revalidate: 60 },
   });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch About Me data');
-  }
-
+  if (!res.ok) throw new Error("Failed to fetch About Me data");
   return res.json();
 }
 
 export default async function AboutPage() {
   const aboutMe = await getAboutMeData();
-  const { content } = aboutMe.data;
-
-  if (!content || !Array.isArray(content)) {
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-8">About Me</h1>
-          <h2 className="text-2xl mt-4">About Me content not available or in unexpected format.</h2>
-          <p>Please ensure you&apos;ve saved and published content in Strapi&apos;s &apos;About Me&apos; section.</p>
-        </div>
-      </main>
-    );
-  }
+  const { content } = aboutMe.data || {};
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-6 sm:p-12 bg-white">
-      <section className="w-full max-w-2xl mx-auto flex flex-col gap-8 items-center">
-        <h1 className="text-4xl font-bold mb-4 text-center">About Me</h1>
-        <BlocksRenderer content={content} />
-        <div className="flex flex-col items-center gap-2 mt-6">
-          <a
-            href="/resume.pdf"
-            download
-            className="inline-block px-6 py-3 bg-black text-white font-serif rounded-lg shadow hover:bg-[#8a7c54] hover:text-black transition-colors text-lg"
-          >
-            Download Resume
-          </a>
+    <main className="bg-white text-[#111] min-h-screen px-5 sm:px-8 py-10 flex flex-col items-center">
+      {/* Optional Profile Image */}
+      {aboutMe.data?.attributes?.profileImage?.data?.attributes?.url && (
+        <img
+          src={aboutMe.data.attributes.profileImage.data.attributes.url}
+          alt="Profile"
+          className="w-28 h-28 rounded-full object-cover mb-6 shadow-sm border border-gray-100"
+        />
+      )}
+      {/* Header */}
+      <h1 className="text-3xl sm:text-4xl font-bold font-sans text-center mb-6">About Me</h1>
+      {/* About Me Text */}
+      {content && (
+        <div className="max-w-2xl mx-auto mb-8 text-lg font-serif leading-relaxed" style={{ lineHeight: 1.7 }}>
+          {/* If using Strapi blocks */}
+          <BlocksRenderer content={content} />
+          {/* If not using blocks, fallback to raw JSON */}
+          {/* <pre>{JSON.stringify(content, null, 2)}</pre> */}
         </div>
-      </section>
+      )}
     </main>
   );
 } 
