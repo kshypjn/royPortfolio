@@ -1,10 +1,14 @@
 'use client';
 import { FaLinkedin, FaTwitter } from 'react-icons/fa';
+import HamburgerMenu from './HamburgerMenu';
 
 export default function Header() {
   return (
     <header className="w-full flex items-center justify-between px-6 py-8 bg-transparent">
-      <div className="w-16"></div>
+      <div className="sm:hidden flex items-center">
+        <HamburgerMenu />
+      </div>
+      <div className="w-16 hidden sm:block"></div>
       
       <span className="text-3xl font-bold tracking-tight animate-fade-in-down text-black text-center flex-1">
         Aditya Roy

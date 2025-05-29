@@ -39,3 +39,28 @@ body {
 .animate-fade-in {
   animation: fade-in 1.2s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
+
+@keyframes cute-bounce {
+  0% {
+    transform: rotate(90deg) scale(1);
+  }
+  20% {
+    transform: rotate(90deg) scale(1.15) translateY(-6px);
+  }
+  40% {
+    transform: rotate(90deg) scale(0.95) translateY(2px);
+  }
+  60% {
+    transform: rotate(90deg) scale(1.1) translateY(-4px);
+  }
+  80% {
+    transform: rotate(90deg) scale(0.98) translateY(1px);
+  }
+  100% {
+    transform: rotate(90deg) scale(1);
+  }
+}
+.hover\:animate-cute-bounce:hover {
+  animation: cute-bounce 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
+}

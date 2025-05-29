@@ -89,7 +89,7 @@ export default async function Home() {
                     </div>
                     <div className="mb-1 text-sm font-serif italic text-[#8a7c54]">
                       {PublicationDate && (
-                        <>On {new Date(PublicationDate).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</>
+                        <>On {new Date(PublicationDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</>
                       )}
                     </div>
                     <h3 className="text-lg md:text-xl font-serif font-normal mb-3 leading-tight text-black transition-colors group-hover:text-[#8a7c54] group-focus:text-[#8a7c54]">
