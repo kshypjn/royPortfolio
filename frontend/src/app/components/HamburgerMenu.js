@@ -29,13 +29,13 @@ export default function HamburgerMenu() {
   return (
     <>
       <button
-        className="flex flex-col gap-1.5 group cursor-pointer transition-transform duration-300"
+        className="flex flex-col gap-1.5 group cursor-pointer transition-transform duration-300 transform group-hover:scale-110"
         aria-label="Open menu"
         onClick={() => setOpen(true)}
       >
-        <span className="block w-8 h-0.5 bg-black rounded transition-all group-hover:bg-blue-600"></span>
-        <span className="block w-8 h-0.5 bg-black rounded transition-all group-hover:bg-blue-600"></span>
-        <span className="block w-8 h-0.5 bg-black rounded transition-all group-hover:bg-blue-600"></span>
+        <span className="block w-8 h-0.5 bg-black rounded transition-all group-hover:scale-105"></span>
+        <span className="block w-8 h-0.5 bg-black rounded transition-all group-hover:scale-105" ></span>
+        <span className="block w-8 h-0.5 bg-black rounded transition-all group-hover:scale-105"></span>
       </button>
 
       <div 
@@ -44,7 +44,7 @@ export default function HamburgerMenu() {
         }`}
       >
         <button
-          className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center text-black hover:bg-gray-100 rounded-full transition"
+          className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center text-black hover:bg-gray-100 rounded-full transition cursor-pointer`"
           aria-label="Close menu"
           onClick={() => setOpen(false)}
         >
@@ -57,14 +57,14 @@ export default function HamburgerMenu() {
         <nav className="flex flex-1 flex-col items-start px-8 pt-24 gap-8">
           <Link 
             href="/" 
-            className="text-2xl font-bold tracking-widest text-black hover:text-blue-600 transition-colors" 
+            className="text-2xl font-bold tracking-widest text-black sidebar-underline" 
             onClick={() => setOpen(false)}
           >
             HOME
           </Link>
           <Link 
             href="/about" 
-            className="text-2xl font-bold tracking-widest text-black hover:text-blue-600 transition-colors" 
+            className="text-2xl font-bold tracking-widest text-black sidebar-underline" 
             onClick={() => setOpen(false)}
           >
             ABOUT ME

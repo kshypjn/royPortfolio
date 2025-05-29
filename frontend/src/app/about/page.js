@@ -29,11 +29,18 @@ export default async function AboutPage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <section className="relative flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1] mb-12">
-        <div className="prose lg:prose-xl dark:prose-invert">
-          <h1 className="text-4xl font-bold mb-8">About Me</h1>
-          <BlocksRenderer content={content} />
+    <main className="flex min-h-screen flex-col items-center justify-between p-6 sm:p-12 bg-white">
+      <section className="w-full max-w-2xl mx-auto flex flex-col gap-8 items-center">
+        <h1 className="text-4xl font-bold mb-4 text-center">About Me</h1>
+        <BlocksRenderer content={content} />
+        <div className="flex flex-col items-center gap-2 mt-6">
+          <a
+            href="/resume.pdf"
+            download
+            className="inline-block px-6 py-3 bg-black text-white font-serif rounded-lg shadow hover:bg-[#8a7c54] hover:text-black transition-colors text-lg"
+          >
+            Download Resume
+          </a>
         </div>
       </section>
     </main>

@@ -1,6 +1,7 @@
 'use client';
 import { FaLinkedin, FaTwitter } from 'react-icons/fa';
 import HamburgerMenu from './HamburgerMenu';
+import Link from 'next/link';
 
 export default function Header() {
   return (

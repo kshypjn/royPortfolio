@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
           {/* 'A' Logo positioned at bottom */}
           <div className="flex-1 flex flex-col justify-end items-center hidden  sm:flex ">
             <Link href="/" className="mb-12 pointer-events-auto transform rotate-270 hover:cursor-pointer hover:animate-cute-bounce " aria-label="Home">
-              <span className="text-3xl md:text-4xl lg:text-5xl font-serif text-black" style={{lineHeight: 1}}>A</span>
+              <span className="text-xl md:text-2xl lg:text-3xl font-serif text-black" style={{lineHeight: 1}}>A</span>
             </Link>
           </div>
         </div>

@@ -62,5 +62,25 @@ body {
 }
 .hover\:animate-cute-bounce:hover {
   animation: cute-bounce 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
 
+/* Gold underline animation for sidebar links */
+.sidebar-underline {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+.sidebar-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: gold;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sidebar-underline:hover::after,
+.sidebar-underline:focus::after {
+  width: 100%;
 }

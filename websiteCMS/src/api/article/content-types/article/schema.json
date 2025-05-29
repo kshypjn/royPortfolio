@@ -29,6 +29,9 @@
     "PublicationDate": {
       "type": "date"
     },
+    "publication": {
+      "type": "string"
+    },
     "tags": {
       "type": "relation",
       "relation": "manyToMany",
