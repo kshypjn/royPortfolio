@@ -1,0 +1,25 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --- UPDATED Article model (no createdAt/updatedAt) ---
+model Article {
+  id            String    @id @default(uuid()) @map("id") // Primary key, auto-generated UUID
+  title         String // String type for article title
+  url           String    @unique // String type for URL, must be unique
+  publication   String // String for publication name
+  thumbnailUrl  String? // Optional string for thumbnail URL (the '?' means it can be null)
+  publishedDate DateTime @map("publishedDate") // Date and time, maps to 'publishedDate' column in DB
+  tags          String[] // Array of strings for tags (maps to text[] in PostgreSQL)
+  status        String? // Optional string for article status (e.g., 'Draft', 'Published')
+
+  // This line maps the Prisma model name "Article" to your actual database table name "Articles"
+  @@map("Articles")
+}
